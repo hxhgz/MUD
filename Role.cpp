@@ -56,9 +56,18 @@ void Role::operator=(Role player) {			//重载=实现深复制
 bool Role::showSkill() {
 	if (skill.getSkillNum()) {
 		cout << "你可以选择使用的秘籍有：" << endl;
-		for (int i = 0; i < skill.getSkillNum(); i++)
-			cout << "秘籍" << i + 1 << ":" << skill.getName(skill.getSkillId(i)) << '\t';
-		return true;
+		skill.SortSkillId();//给技能编号排序，输出的编号有顺序，美观一点
+		if (skill.getSkillNum() < 16) {//商店有的秘籍编号是9-15，索引值是0-7，所以Id号-9
+			for (int i = 0; i < skill.getSkillNum(); i++)
+				cout << skill.getSkillId(i) << "秘籍" << ":" << skill.getName(skill.getSkillId(i) - 9) << '\t' << "伤害：" << skill.getAddAttack(skill.getSkillId(i) - 9) << '\t' << "内力消耗：" << skill.getNeedMp(skill.getSkillId(i) - 9) << endl;
+			return true;
+		}
+		else {//敌人有的秘籍编号是21-26，索引值是7-12，所以是ID号-14
+			for (int i = 0; i < skill.getSkillNum(); i++)
+				cout << skill.getSkillId(i) << "秘籍" << ":" << skill.getName(skill.getSkillId(i) - 14) << '\t' << "伤害：" << skill.getAddAttack(skill.getSkillId(i) - 14) << '\t' << "内力消耗：" << skill.getNeedMp(skill.getSkillId(i) - 14) << endl;
+			return true;
+		}
+		
 	}
 	else {
 		cout << "你当前背包里尚未配备任何秘籍。" << endl;
@@ -66,25 +75,46 @@ bool Role::showSkill() {
 	}
 }
 
-double Role::useSkill() {
-	cout << endl << "请选择：";
-	int useWhatSkill;
-	cin >> useWhatSkill;
-	if (!skill.IfHaveSkill(useWhatSkill)) {
-		cout << "你的背包里尚未拥有这个秘籍，无法使用。" << endl;
-		return 0;
-	}
-	else if (getMp() < skill.getNeedMp(useWhatSkill)) {
-		cout << "你的内力不足，无法使用该秘籍。" << endl;
-		return 0;
-	}
-	else {
+double Role::useSkill() {//用这个函数时联系我商量一下
 
-		setMp(getMp() - skill.getNeedMp(useWhatSkill));
-
-		cout << "你消耗" << skill.getNeedMp(useWhatSkill) << "点内力使用了“" << skill.getName(useWhatSkill) << "”技能，对";			//这里跳转回Filght.cpp继续
-		return skill.getAddAttack(useWhatSkill);//返回技能的加成
+begin: cout << endl << "请选择：";//配合后面goto语句，
+	  int useWhatSkill;
+	  while (true) {//防止用户输入其他数据
+		cin >> useWhatSkill;
+		if (useWhatSkill ==9|| useWhatSkill==10|| useWhatSkill==11|| useWhatSkill==12|| useWhatSkill==13||useWhatSkill==14|| useWhatSkill==15) {
+			useWhatSkill -= 9;
+			break;
+		}
+		else if (useWhatSkill == 21 || useWhatSkill == 22 || useWhatSkill == 23 || useWhatSkill == 24 || useWhatSkill == 25 || useWhatSkill == 26) {
+			useWhatSkill -= 14;
+			break;
+		}
+		else {
+			cout << "请重新输入！" << endl;
+			system("cls");
+			goto begin;//回到begin，提醒用户重新输入，
+		}
 	}
+	
+	
+		if (!skill.IfHaveSkill(useWhatSkill)) {
+			cout << "你的背包里尚未拥有这个秘籍，无法使用。" << endl;
+			return 0;
+		}
+		else if (getMp() < skill.getNeedMp(useWhatSkill)) {
+			cout << "你的内力不足，无法使用该秘籍。" << endl;
+			return 0;
+		}
+		else {
+
+			setMp(getMp() - skill.getNeedMp(useWhatSkill));
+
+			cout << "你消耗" << skill.getNeedMp(useWhatSkill) << "点内力使用了“" << skill.getName(useWhatSkill) << "”秘籍";			//这里跳转回Filght.cpp继续
+			return skill.getAddAttack(useWhatSkill);//返回秘籍的加成
+		}
+	
+	
+	
 }
 Role::~Role() {}
 
@@ -187,7 +217,7 @@ void Role::showRole()
 }
 
 
-bag Role::getBag() {
+Bag Role::getBag() {
 	return bagbag;
 }
 
@@ -199,6 +229,9 @@ void Role::showBag() {
 	bagbag.showbags();
 }
 
+void Role::showDrug() {
+	bagbag.showdrugs();
+}
 int Role::getBagWhichGoodsId(int whichGoods) {
 	return bagbag.getWhichGoodsId(whichGoods);
 
@@ -275,7 +308,7 @@ bool Role::subGoodsToBag(int goodsId, int num) {
 	return bagbag.reducegoods(goodsId, num);
 }
 
-void Role::setBag(bag bags) {
+void Role::setBag(Bag bags) {
 	bagbag = bags;
 }
 
@@ -286,7 +319,7 @@ void Role::savePlayerBag() {
 
 
 void Role::newBag() {
-	bag bags;
+	Bag bags;
 	bagbag = bags;
 }
 
