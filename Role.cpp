@@ -4,23 +4,25 @@
 
 using namespace std;
 
+Role::Role() {
 
-Role::Role(int t)  {  
+};
+Role::Role(int t) {
 	mapId = 0;
 	switch (t) {
 	case 0: {
-		type = 0;		//ÓÃÀ´ÅĞ¶ÏÓĞÃ»ÓĞ±£´æµÄÓÎÏ·
+		type = 0;		//ç”¨æ¥åˆ¤æ–­æœ‰æ²¡æœ‰ä¿å­˜çš„æ¸¸æˆ
 		break;
 	}
 	case 1: {
-		name = "Çï·ïÎà";
+		name = "ç§‹å‡¤æ¢§";
 		type = 1;
 		health_max = 160;
 		health = 160;
 		attack = 30;
 		defend = 0;
 		money = 0;
-		skill = Role_Skill::Role_Skill();//Ö»ÓĞÒ»¸ö½ÇÉ«
+		skill = Skill::Skill();//åªæœ‰ä¸€ä¸ªè§’è‰²
 		break;
 	}
 
@@ -29,61 +31,61 @@ Role::Role(int t)  {
 	}
 }
 
-void Role::operator=(Role player) {			//ÖØÔØ=ÊµÏÖÉî¸´ÖÆ
+void Role::operator=(Role player) {			//é‡è½½=å®ç°æ·±å¤åˆ¶
 	name = player.getName();
 	type = player.getType();
 	health_max = player.getHealth_max();
 	health = player.getHealth();
 	Mp = player.getMp();
-	
+
 	attack = player.getAttack();
-	
 
-	
-	defend = player.getDefend();	//´ı¿¼ÂÇ
+
+
+	defend = player.getDefend();	//å¾…è€ƒè™‘
 	money = player.getMoney();
-	bag = player.getBag();
+	bagbag = player.getBag();
 
-	
+
 	mapId = player.getMapId();
-	skill = player.getSkill();		//´ı¿¼ÂÇ
+	skill = player.getRole_Skill();		//å¾…è€ƒè™‘
 	story = player.getStory();
 }
 
-//·µ»ØÊÇ·ñÓĞÃØ¼®ÊÍ·Å
+//è¿”å›æ˜¯å¦æœ‰ç§˜ç±é‡Šæ”¾
 bool Role::showSkill() {
-	if (skillId.size()) {
-		cout << "Äã¿ÉÒÔÑ¡ÔñÊ¹ÓÃµÄÃØ¼®ÓĞ£º" << endl;
-		for (int i = 0; i < skillId.size(); i++)
-			cout << "ÃØ¼®" << i + 1 << ":" << skill.getName(skillId[i]) << '\t';
+	if (skill.getSkillNum()) {
+		cout << "ä½ å¯ä»¥é€‰æ‹©ä½¿ç”¨çš„ç§˜ç±æœ‰ï¼š" << endl;
+		for (int i = 0; i < skill.getSkillNum(); i++)
+			cout << "ç§˜ç±" << i + 1 << ":" << skill.getName(skill.getSkillId(i)) << '\t';
 		return true;
 	}
 	else {
-		cout << "Äãµ±Ç°±³°üÀïÉĞÎ´Åä±¸ÈÎºÎÃØ¼®¡£" << endl;
+		cout << "ä½ å½“å‰èƒŒåŒ…é‡Œå°šæœªé…å¤‡ä»»ä½•ç§˜ç±ã€‚" << endl;
 		return false;
 	}
 }
 
 double Role::useSkill() {
-	cout << endl << "ÇëÑ¡Ôñ£º";
+	cout << endl << "è¯·é€‰æ‹©ï¼š";
 	int useWhatSkill;
 	cin >> useWhatSkill;
-	if (!skill.ifHaveSkill(useWhatSkill)) {
-		cout << "ÄãµÄ±³°üÀïÉĞÎ´ÓµÓĞÕâ¸öÃØ¼®£¬ÎŞ·¨Ê¹ÓÃ¡£" << endl;
+	if (!skill.IfHaveSkill(useWhatSkill)) {
+		cout << "ä½ çš„èƒŒåŒ…é‡Œå°šæœªæ‹¥æœ‰è¿™ä¸ªç§˜ç±ï¼Œæ— æ³•ä½¿ç”¨ã€‚" << endl;
 		return 0;
 	}
 	else if (getMp() < skill.getNeedMp(useWhatSkill)) {
-		cout << "ÄãµÄÄÚÁ¦²»×ã£¬ÎŞ·¨Ê¹ÓÃ¸ÃÃØ¼®¡£" << endl;
+		cout << "ä½ çš„å†…åŠ›ä¸è¶³ï¼Œæ— æ³•ä½¿ç”¨è¯¥ç§˜ç±ã€‚" << endl;
 		return 0;
 	}
 	else {
-		setMp(getMp() - skill.getNeedMP(useWhatSkill));
-		cout << "ÄãÏûºÄ" << skill.getNeedMP(useWhatSkill) << "µãÄÚÁ¦Ê¹ÓÃÁË¡°" << skill.getName(useWhatSkill) << "¡±¼¼ÄÜ£¬¶Ô";			//ÕâÀïÌø×ª»ØFilght.cpp¼ÌĞø
-		return skill.getAddAttack(useWhatSkill);//·µ»Ø¼¼ÄÜµÄ¹¥»÷¼Ó³É
+
+		setMp(getMp() - skill.getNeedMp(useWhatSkill));
+
+		cout << "ä½ æ¶ˆè€—" << skill.getNeedMp(useWhatSkill) << "ç‚¹å†…åŠ›ä½¿ç”¨äº†â€œ" << skill.getName(useWhatSkill) << "â€æŠ€èƒ½ï¼Œå¯¹";			//è¿™é‡Œè·³è½¬å›Filght.cppç»§ç»­
+		return skill.getAddAttack(useWhatSkill);//è¿”å›æŠ€èƒ½çš„åŠ æˆ
 	}
 }
-
-
 Role::~Role() {}
 
 string Role::getName() {
@@ -153,7 +155,7 @@ void Role::setAttack(int a) {
 
 }
 
-int Role::getDefend() {//·ÀÓùÖµ£¬»¤¼×¿É¼Ó·ÀÓùÖµ
+int Role::getDefend() {//é˜²å¾¡å€¼ï¼ŒæŠ¤ç”²å¯åŠ é˜²å¾¡å€¼
 	return defend;
 }
 void Role::setDefend(int d) {
@@ -172,170 +174,170 @@ void Role::setMoney(int m) {
 void Role::showRole()
 {
 	cout << endl;
-	cout << endl << "µ±Ç°ÈËÎïÊôĞÔ:" << '\t';
-	cout << "ĞÕÃû:" << name << '\t';
-	
-	cout << "ÆøÑª:" << health << "/" << health_max << '\t';
+	cout << endl << "å½“å‰äººç‰©å±æ€§:" << '\t';
+	cout << "å§“å:" << name << '\t';
 
-	cout << "ÄÚÁ¦:" << Mp << endl;
-	cout << "»¤¼×£º" << getDefend() << endl;
-	cout << "¹¥»÷:" << attack << '\t';
+	cout << "æ°”è¡€:" << health << "/" << health_max << '\t';
 
-	cout << "½ğÇ®:" << money << endl;
+	cout << "å†…åŠ›:" << Mp << endl;
+	cout << "æŠ¤ç”²ï¼š" << getDefend() << endl;
+	cout << "æ”»å‡»:" << attack << '\t';
+
+	cout << "é‡‘é’±:" << money << endl;
 }
 
 
-Bag Role::getBag() {
-	return bag;
+bag Role::getBag() {
+	return bagbag;
 }
 
-Skill Role::getSkill() {
+Skill Role::getRole_Skill() {
 	return skill;
 }
 
 void Role::showBag() {
-	bag.showbags();
+	bagbag.showbags();
 }
 
 int Role::getBagWhichGoodsId(int whichGoods) {
-	return bag.getWhichGoodsId(whichGoods);
+	return bagbag.getWhichGoodsId(whichGoods);
 
 }
 
 int Role::getBagWhichGoodsNum(int whichGoods) {
-	return bag.getWhichGoodsNum(whichGoods);
+	return bagbag.getWhichGoodsNum(whichGoods);
 
 }
 
 void Role::addGoodsToBag(int* goodsId, int* num) {
-	cout << endl << "µÃµ½ÁË£º" << endl;
+	cout << endl << "å¾—åˆ°äº†ï¼š" << endl;
 
-	bag.showgoods(goodsId, num);
-	
-	if (bag.getgoodnumber() > 20) {
-		cout << "±³°üÒÑÂú£¬ÎŞ·¨Ìí¼Ó¡£" << endl;
+	bagbag.showgoods(goodsId, num);
+
+	if (bagbag.getgoodnumber() > 20) {
+		cout << "èƒŒåŒ…å·²æ»¡ï¼Œæ— æ³•æ·»åŠ ã€‚" << endl;
 	}
-	else if (bag.getgoodnumber() + num[0] + num[1] + num[2] + num[3] > 20) {//µôÂäµÄÎïÆ·¿ÉÒÔÓĞÃØ¼®ºÍÎäÆ÷,ÊıÁ¿numÔİ¶¨£¬½ğ±Ò²»ÊÇgoodÀïÃæµÄ
-		cout << "±³°üÊ£Óà¿ÕÎ»²»×ã£¬ÎŞ·¨ÍêÈ«Ìí¼Ó¡£" << endl;
-		cout << "Äã½öÄÜÌí¼Ó" << 20 - bag.getgoodnumber() << "¼ş¡£" << endl;
-		cout << "ÇëÑ¡ÔñÒªÌí¼ÓµÄÎïÆ·£º";
-		for (int chioce = 0; num[chioce] == 0 || bag.getgoodnumber() >= 20;) {
+	else if (bagbag.getgoodnumber() + num[0] + num[1] + num[2] + num[3] > 20) {//æ‰è½çš„ç‰©å“å¯ä»¥æœ‰ç§˜ç±å’Œæ­¦å™¨,æ•°é‡numæš‚å®šï¼Œé‡‘å¸ä¸æ˜¯goodé‡Œé¢çš„
+		cout << "èƒŒåŒ…å‰©ä½™ç©ºä½ä¸è¶³ï¼Œæ— æ³•å®Œå…¨æ·»åŠ ã€‚" << endl;
+		cout << "ä½ ä»…èƒ½æ·»åŠ " << 20 - bagbag.getgoodnumber() << "ä»¶ã€‚" << endl;
+		cout << "è¯·é€‰æ‹©è¦æ·»åŠ çš„ç‰©å“ï¼š";
+		for (int chioce = 0; num[chioce] == 0 || bagbag.getgoodnumber() >= 20;) {
 			cin >> chioce;
-			if (num[chioce] + bag.getgoodnumber() > 20) {
-				bag.addgoods(goodsId[chioce], 20 - bag.getgoodnumber());
-				cout << "³É¹¦Ìí¼Ó" << 20 - bag.getGoodsNum() << "¼şµ½±³°ü£¡" << endl << endl;
+			if (num[chioce] + bagbag.getgoodnumber() > 20) {
+				bagbag.addgoods(goodsId[chioce], 20 - bagbag.getgoodnumber());
+				cout << "æˆåŠŸæ·»åŠ " << 20 - bagbag.getgoodnumber() << "ä»¶åˆ°èƒŒåŒ…ï¼" << endl << endl;
 			}
 			else {
-				bag.addgoods(goodsId[chioce], num[chioce]);
-				cout << "³É¹¦Ìí¼Ó" << num[chioce] << "¼şµ½±³°ü£¡" << endl << endl;
+				bagbag.addgoods(goodsId[chioce], num[chioce]);
+				cout << "æˆåŠŸæ·»åŠ " << num[chioce] << "ä»¶åˆ°èƒŒåŒ…ï¼" << endl << endl;
 			}
 		}
 	}
 	else {
 		for (int i = 0; goodsId[i] >= 0; i++)
-			bag.addgoods(goodsId[i], num[i]);
-		cout << "È«²¿³É¹¦Ìí¼Óµ½±³°ü£¡" << endl << endl;
+			bagbag.addgoods(goodsId[i], num[i]);
+		cout << "å…¨éƒ¨æˆåŠŸæ·»åŠ åˆ°èƒŒåŒ…ï¼" << endl << endl;
 	}
 }
 
 void Role::addGoodsToBag(int goodsId, int num) {
-	cout << endl << "µÃµ½ÁË£º" << endl;
+	cout << endl << "å¾—åˆ°äº†ï¼š" << endl;
 
-	bag.showgoods(goodsId, num);
-	if (bag.getgoodnumber() > 20) {
-		cout << "±³°üÒÑÂú£¬ÎŞ·¨Ìí¼Ó¡£" << endl;
+	bagbag.showgoods(goodsId, num);
+	if (bagbag.getgoodnumber() > 20) {
+		cout << "èƒŒåŒ…å·²æ»¡ï¼Œæ— æ³•æ·»åŠ ã€‚" << endl;
 	}
-	else if (bag.getgoodnumber() + num > 20) {
-		cout << "±³°üÊ£Óà¿ÕÎ»²»×ã£¬ÎŞ·¨ÍêÈ«Ìí¼Ó¡£" << endl;
-		cout << "Äã½öÄÜÌí¼Ó" << 20 - bag.getgoodnumber() << "¼ş¡£" << endl;
-		cout << "ÇëÑ¡ÔñÒªÌí¼ÓµÄÎïÆ·£º";
-		for (int chioce = 0; num == 0 || bag.getgoodnumber() >= 20;) {
+	else if (bagbag.getgoodnumber() + num > 20) {
+		cout << "èƒŒåŒ…å‰©ä½™ç©ºä½ä¸è¶³ï¼Œæ— æ³•å®Œå…¨æ·»åŠ ã€‚" << endl;
+		cout << "ä½ ä»…èƒ½æ·»åŠ " << 20 - bagbag.getgoodnumber() << "ä»¶ã€‚" << endl;
+		cout << "è¯·é€‰æ‹©è¦æ·»åŠ çš„ç‰©å“ï¼š";
+		for (int chioce = 0; num == 0 || bagbag.getgoodnumber() >= 20;) {
 			cin >> chioce;
-			if (num + bag.getgoodnumber() > 20) {
-				bag.addgoods(goodsId, 20 - bag.getgoodnumber());
-				cout << "³É¹¦Ìí¼Ó" << 20 - bag.getgoodnumber() << "¼şµ½±³°ü£¡" << endl << endl;
+			if (num + bagbag.getgoodnumber() > 20) {
+				bagbag.addgoods(goodsId, 20 - bagbag.getgoodnumber());
+				cout << "æˆåŠŸæ·»åŠ " << 20 - bagbag.getgoodnumber() << "ä»¶åˆ°èƒŒåŒ…ï¼" << endl << endl;
 			}
 			else {
-				bag.addgoods(goodsId, num);
-				cout << "³É¹¦Ìí¼Ó" << num << "¼şµ½±³°ü£¡" << endl << endl;
+				bagbag.addgoods(goodsId, num);
+				cout << "æˆåŠŸæ·»åŠ " << num << "ä»¶åˆ°èƒŒåŒ…ï¼" << endl << endl;
 			}
 		}
 	}
 	else {
-		bag.addgoods(goodsId, num);
-		cout << "È«²¿³É¹¦Ìí¼Óµ½±³°ü£¡" << endl << endl;
+		bagbag.addgoods(goodsId, num);
+		cout << "å…¨éƒ¨æˆåŠŸæ·»åŠ åˆ°èƒŒåŒ…ï¼" << endl << endl;
 	}
 }
 
 
 
 bool Role::subGoodsToBag(int goodsId, int num) {
-	return bag.reducegoods(goodsId, num);
+	return bagbag.reducegoods(goodsId, num);
 }
 
-void Role::setBag(Bag bags) {
-	bag = bags;
+void Role::setBag(bag bags) {
+	bagbag = bags;
 }
 
 void Role::savePlayerBag() {
-	bag.savebag();
+	bagbag.savebag();
 }
 
 
 
 void Role::newBag() {
-	Bag bags;
-	bag = bags;
+	bag bags;
+	bagbag = bags;
 }
 
 
 
-void Role::addSaveGoodsToBag(int goodsId, int num) {
-	bag.addgoods(goodsId, num);
+void Role::addSaveGoodsToBag(int Id, int num) {
+	bagbag.addgoods(Id, num);
 }
 
 void Role::useDrug() {
-	if (bag.isUseDrug()) {
-		cout << "ÊÇ·ñÊ¹ÓÃ²¹Æ·£º	1.ÊÇ	2.·ñ" << endl;
+	if (bagbag.isUseDrug()) {
+		cout << "æ˜¯å¦ä½¿ç”¨è¡¥å“ï¼š	1.æ˜¯	2.å¦" << endl;
 		int choice;
 		cin >> choice;
 		if (choice == 2)
 			return;
 		if (choice == 1) {
-			cout << "ÇëÑ¡ÔñÒªÊ¹ÓÃµÄ²¹Æ·£º" << endl;
-			for (int i = bag.getgoodnumber(); i > 0; i--) {
+			cout << "è¯·é€‰æ‹©è¦ä½¿ç”¨çš„è¡¥å“ï¼š" << endl;
+			for (int i = bagbag.getgoodnumber(); i > 0; i--) {
 				for (int j = 16; j < 20; j++)
 					if (getBagWhichGoodsId(i) == j)
-						cout << i << "." << '\t' << goods[getBagWhichGoodsId(i)].getName() << '\t' << getBagWhichGoodsNum(i) << " ¼ş" << endl;
+						cout << i << "." << '\t' << goods[getBagWhichGoodsId(i)].getName() << '\t' << getBagWhichGoodsNum(i) << " ä»¶" << endl;
 			}
-			cout << "0.È¡Ïû" << endl;
+			cout << "0.å–æ¶ˆ" << endl;
 			int choiceGoodsId, choiceGoodsNum;
 			while (true) {
 				cin >> choiceGoodsId;
-				if (choiceGoodsId < 0 || choiceGoodsId > bag.getgoodnumber())
-					cout << "Ñ¡Ôñ´íÎó£¬ÇëÖØĞÂÑ¡Ôñ£¡" << endl;
+				if (choiceGoodsId < 0 || choiceGoodsId > bagbag.getgoodnumber())
+					cout << "é€‰æ‹©é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©ï¼" << endl;
 				else break;
 
 			}
 			choiceGoodsId = getBagWhichGoodsId(choiceGoodsId);
-			cout << "ÇëÑ¡ÔñÊ¹ÓÃ¶àÉÙ£¨ÊäÈë0È¡Ïû£©£º" << endl;
+			cout << "è¯·é€‰æ‹©ä½¿ç”¨å¤šå°‘ï¼ˆè¾“å…¥0å–æ¶ˆï¼‰ï¼š" << endl;
 			cin >> choiceGoodsNum;
 			subGoodsToBag(choiceGoodsId, choiceGoodsNum);
-			cout << "³É¹¦Ê¹ÓÃÒ©Æ·£¡";
+			cout << "æˆåŠŸä½¿ç”¨è¯å“ï¼";
 			if (choiceGoodsId == 16 || choiceGoodsId == 17) {
 				for (int i = choiceGoodsNum; i > 0; i--)
 					setHealth(goods[choiceGoodsId].getAddHP() + getHealth());
-				cout << "¹²»Ö¸´" << goods[choiceGoodsId].getAddHP() * choiceGoodsNum << "µãÆøÑª¡£" << endl << endl;
+				cout << "å…±æ¢å¤" << goods[choiceGoodsId].getAddHP() * choiceGoodsNum << "ç‚¹æ°”è¡€ã€‚" << endl << endl;
 			}
 			if (choiceGoodsId == 18 || choiceGoodsId == 19) {
 				for (int i = choiceGoodsNum; i > 0; i--)
 					setDefend(goods[choiceGoodsId].getAddArmor() + getArmor());
-				cout << "¹²»Ö¸´" << goods[choiceGoodsId].getAddArmor() * choiceGoodsNum << "µã»¤¼×Öµ¡£" << endl << endl;
+				cout << "å…±æ¢å¤" << goods[choiceGoodsId].getAddArmor() * choiceGoodsNum << "ç‚¹æŠ¤ç”²å€¼ã€‚" << endl << endl;
 			}
 			if (choiceGoodsId == 20) {
 				for (int i = choiceGoodsNum; i > 0; i--)
 					setMp(goods[choiceGoodsId].getAddMP() + getMp());
-				cout << "¹²»Ö¸´" << goods[choiceGoodsId].getAddMP() * choiceGoodsNum << "µãÄÚÁ¦¡£" << endl << endl;
+				cout << "å…±æ¢å¤" << goods[choiceGoodsId].getAddMP() * choiceGoodsNum << "ç‚¹å†…åŠ›ã€‚" << endl << endl;
 			}
 			if (choiceGoodsId == 0) return;
 		}
@@ -344,17 +346,17 @@ void Role::useDrug() {
 
 void Role::showEquip()
 {
-	cout << "µ±Ç°ÒÑ×°±¸:" << endl;
-	cout << "ÎäÆ÷:";
+	cout << "å½“å‰å·²è£…å¤‡:" << endl;
+	cout << "æ­¦å™¨:";
 	if (weapon == -1) {
-		cout << "ÎŞ" << endl;
+		cout << "æ— " << endl;
 	}
 	else {
 		cout << goods[weapon].getName() << endl;
 	}
-	cout << "»¤¼×:";
+	cout << "æŠ¤ç”²:";
 	if (armor == -1) {
-		cout << "ÎŞ" << endl;
+		cout << "æ— " << endl;
 	}
 	else {
 		cout << goods[armor].getName() << endl;
@@ -375,32 +377,32 @@ void Role::wearEquip(int id)
 			removeEquip(armor);
 		}
 		setDefend(getDefend() + goods[id].getAddArmor());
-	
-			armor = id;
+
+		armor = id;
 	}
-	bag.reduceGoods(id, 1);
-	cout << "ÒÑ×°±¸ " << goods[id].getName() << endl;
+	bagbag.reducegoods(id, 1);
+	cout << "å·²è£…å¤‡ " << goods[id].getName() << endl;
 }
 
 void Role::removeEquip(int id)
 {
 	if (goods[id].getType() == 0) {
 		if (weapon != -1) {
-			cout << "µ±Ç°ÎŞÎäÆ÷" << endl;
+			cout << "å½“å‰æ— æ­¦å™¨" << endl;
 		}
 		setAttack(getAttack() - goods[id].getAddAttack());
 		weapon = -1;
 	}
 	else if (goods[id].getType() == 1) {
 		if (armor != -1) {
-			cout << "µ±Ç°ÎŞ»¤¼×" << endl;
+			cout << "å½“å‰æ— æŠ¤ç”²" << endl;
 		}
 		setDefend(getDefend() - goods[id].getAddArmor());
-	
+
 		armor = -1;
 	}
-	bag.addGoods(id, 1);
-	cout << "ÒÑ»»ÏÂ " << goods[id].getName() << endl;
+	bagbag.addgoods(id, 1);
+	cout << "å·²æ¢ä¸‹ " << goods[id].getName() << endl;
 }
 
 
