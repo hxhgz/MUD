@@ -13,7 +13,9 @@ public:
 	//函数获得技能信息
 	string getName(int Id);		//得到秘籍名字
 	string getDesc(int Id);		//得到秘籍描述
+	
 	int getSkillId(int num);		//得到秘籍id
+	void SortSkillId();//给技能Id排序
 	int getNeedMp(int Id);		//得到秘籍耗蓝
 	double getAddAttack(int Id);	//得到秘籍的攻击力
 	bool IfHaveSkill(int Id);	//判断是否有秘籍
@@ -35,6 +37,5 @@ protected:
 
 
 };
-
 
 #endif // SKILL_H
