@@ -18,7 +18,15 @@ void Enemy::displayInfo() const {
 
 int Enemy::getMoney() const {
 	return money;
-};			
+};	
+
+int Enemy::getArmor() const {
+	return armor;
+};
+
+void Enemy::setArmor(int oldArmor) {
+	armor = oldArmor;
+};
 
 Enemy_npc::Enemy_npc(/*int enemyId,*/ string name, int health, int internalEnergy, int armor, int attackPower, int money, const Skill& skill)
 	:Enemy(/*enemyId,*/ name, health, armor, attackPower, money), internalEnergy(internalEnergy),skill(skill){};
