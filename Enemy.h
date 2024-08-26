@@ -12,15 +12,16 @@ public:
 	Enemy(/*int enemyId,*/string name,int health,int armor,int attackPower,int money);
 	virtual ~Enemy() = default;
 	virtual void displayInfo() const;
-	int getMoney() const;			//µôÂä½ğÇ®
-
+	int getMoney() const;			//æ‰è½é‡‘é’±
+	int getArmor() const;
+	void setArmor(int armor);
 protected:
 	//int enemyId;
 	string name;
 	int health;
-	int armor;  //»¤¼×Öµ
+	int armor;  //æŠ¤ç”²å€¼
 	int attackPower;
-	int money;  //µôÂäµÄ½ğÇ®
+	int money;  //æ‰è½çš„é‡‘é’±
 
 	struct Skill {
 		string name;
@@ -33,18 +34,18 @@ public:
 	Enemy_npc(/*int enemyId,*/ string name, int health, int internalEnergy, int armor, int attackPower, int money, const Skill& skill);
 	void displayInfo() const;
 private:
-	int internalEnergy;   //ÄÚÁ¦
-	Skill skill;  //ÓµÓĞµÄÃØ¼®
+	int internalEnergy;   //å†…åŠ›
+	Skill skill;  //æ‹¥æœ‰çš„ç§˜ç±
 };
 
 class Enemy_Boss :public Enemy {
 public:
 	Enemy_Boss(/*int enemyId,*/ string name, int health, int armor, int attackPower, int money, const vector<Skill>& skills);
 private:
-	vector<Skill> skills;  //ÓµÓĞµÄÃØ¼®
+	vector<Skill> skills;  //æ‹¥æœ‰çš„ç§˜ç±
 };
 
-//Ğ¡¹ÖºÍ´ó¹ÖÃ»ÓĞÌØÊâµÄÊôĞÔ£¬ËùÒÔ¾Íµ±×÷EnemyÀà
-//¿¼ÂÇµ½ÊÇÔÚmainÖĞ´´½¨µĞÈË£¬¿ÉÄÜ²»ĞèÒªenemyid£¬¾ÍÔİÊ±×¢ÊÍµô
+//å°æ€ªå’Œå¤§æ€ªæ²¡æœ‰ç‰¹æ®Šçš„å±æ€§ï¼Œæ‰€ä»¥å°±å½“ä½œEnemyç±»
+//è€ƒè™‘åˆ°æ˜¯åœ¨mainä¸­åˆ›å»ºæ•Œäººï¼Œå¯èƒ½ä¸éœ€è¦enemyidï¼Œå°±æš‚æ—¶æ³¨é‡Šæ‰
 
 #endif;
