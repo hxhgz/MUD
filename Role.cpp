@@ -92,9 +92,6 @@ string Role::getName() {
 	return name;
 }
 
-int Role::getType() {
-	return type;
-}
 
 int Role::getMapId() {
 	return mapId;
