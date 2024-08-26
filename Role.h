@@ -5,11 +5,11 @@
 #include "Skill.h"
 #include "Bag.h"
 #include"Goods.h"
-//#include"Task.h"
 using namespace std;
 
 class Role {
 public:
+	Role();
 	Role(int type);
 	~Role();
 
@@ -19,17 +19,17 @@ public:
 	int getType();
 
 	int getHealth_max();
-	void setHealth_max(int hp_m);//±£´æÓÃ
+	void setHealth_max(int hp_m);//ä¿å­˜ç”¨
 
 	int getHealth();
-	void setHealth(int hp);//±£´æÓÃ
+	void setHealth(int hp);//ä¿å­˜ç”¨
 
 	int getMp();
-	void setMp(int intf);//±£´æÓÃ
+	void setMp(int intf);//ä¿å­˜ç”¨
 
 
 	int getAttack();
-	void setAttack(int a);//±£´æÓÃ
+	void setAttack(int a);//ä¿å­˜ç”¨
 
 
 
@@ -37,50 +37,50 @@ public:
 	void setDefend(int d);
 
 	int getMoney();
-	void setMoney(int m);//±£´æÓÃ
+	void setMoney(int m);//ä¿å­˜ç”¨
 
 	int getMapId();
-	void setMapId(int NewMapId);//±£´æÓÃ
+	void setMapId(int NewMapId);//ä¿å­˜ç”¨
 
 	int getStory();
-	void setStory(int s);//±£´æÓÃ
+	void setStory(int s);//ä¿å­˜ç”¨
 
-	Skill getSkill();
-	void setSkill(Skill& newSkill);//±£´æÓÃ
+	Skill getRole_Skill();
+	void setRole_Skill(Skill& newSkill);//ä¿å­˜ç”¨
 
-	void addSaveGoodsToBag(int goodId, int num);//±£´æÓÃ
+	void addSaveGoodsToBag(int Id, int num);//ä¿å­˜ç”¨
 
-	Bag getBag();
+	bag getBag();
 	void showBag();
-	int getBagWhichGoodsId(int whichGoods);			//µÃµ½±³°üÀïµÚwhichGoods¼şÎïÆ·
+	int getBagWhichGoodsId(int whichGoods);			//å¾—åˆ°èƒŒåŒ…é‡Œç¬¬whichGoodsä»¶ç‰©å“
 	int getBagWhichGoodsNum(int whichGoods);
-	//ÏÔÊ¾±³°ü
-	void addGoodsToBag(int* goodsId, int* num);//¼ÓÈë±³°ü,ÖØÔØÓ¦¶ÔÁ½ÖÖÇé¿ö
+	//æ˜¾ç¤ºèƒŒåŒ…
+	void addGoodsToBag(int* goodsId, int* num);//åŠ å…¥èƒŒåŒ…,é‡è½½åº”å¯¹ä¸¤ç§æƒ…å†µ
 	void addGoodsToBag(int goodsId, int num);
 
-	bool subGoodsToBag(int goodsId, int num);	//¼õÉÙ±³°üÀïµÄÎïÆ·
+	bool subGoodsToBag(int goodsId, int num);	//å‡å°‘èƒŒåŒ…é‡Œçš„ç‰©å“
 
-	void setBag(Bag bags);
+	void setBag(bag bags);
 
-	void savePlayerBag();		//ÓÃÀ´µ¥¶À±£´æ±³°ü
+	void savePlayerBag();		//ç”¨æ¥å•ç‹¬ä¿å­˜èƒŒåŒ…
 	//int** getBagSave();
 	void newBag();
 
-	void showRole();//ÈËÎïÊôĞÔ µ±Ç°×°±¸
-	bool showSkill();//ÏÔÊ¾ÃØ¼®,·µ»ØÊÇ·ñ¿ÉÒÔÊ¹ÓÃ¼¼ÄÜ
+	void showRole();//äººç‰©å±æ€§ å½“å‰è£…å¤‡
+	bool showSkill();//æ˜¾ç¤ºç§˜ç±,è¿”å›æ˜¯å¦å¯ä»¥ä½¿ç”¨æŠ€èƒ½
 
-	double useSkill();		//Ê¹ÓÃÃØ¼®,·µ»ØÃØ¼®µÄ¹¥»÷Á¦¼Ó³É
-	void useDrug();			//Ê¹ÓÃÒ©Æ·
+	double useSkill();		//ä½¿ç”¨ç§˜ç±,è¿”å›ç§˜ç±çš„æ”»å‡»åŠ›åŠ æˆ
+	void useDrug();			//ä½¿ç”¨è¯å“
 
-	int getWeapon();//ÎäÆ÷
-	void setWeapon(int w);//±£´æÓÃ
+	int getWeapon();//æ­¦å™¨
+	void setWeapon(int w);//ä¿å­˜ç”¨
 
-	int getArmor();//»¤¼×
-	void setArmor(int a);//±£´æÓÃ
+	int getArmor();//æŠ¤ç”²
+	void setArmor(int a);//ä¿å­˜ç”¨
 
-	void showEquip();//Õ¹Ê¾µ±Ç°×°±¸
-	void wearEquip(int id);//´©ÉÏ×°±¸
-	void removeEquip(int id);//ÍÑÏÂ×°±¸
+	void showEquip();//å±•ç¤ºå½“å‰è£…å¤‡
+	void wearEquip(int id);//ç©¿ä¸Šè£…å¤‡
+	void removeEquip(int id);//è„±ä¸‹è£…å¤‡
 
 
 
@@ -90,23 +90,23 @@ private:
 	int type;
 	int health_max;
 	int health;
-	int defend;//»¤¼×Öµ
-	int Mp;//ÄÚÁ¦Öµ,²»ÉèÉÏÏŞ
+	int defend;//æŠ¤ç”²å€¼
+	int Mp;//å†…åŠ›å€¼,ä¸è®¾ä¸Šé™
 
 	int attack;
 
 
 	int money;
-	Bag bag;			//±³°ü
+	bag bagbag;			//èƒŒåŒ…
 	//int bag[20];
-	int mapId;			//¼ÇÂ¼Íæ¼Òµ±Ç°ËùÔÚµØ
-	Skill skill;		//ËûËùÓµÓĞµÄ¼¼ÄÜ
-	
-	int story = 0;//¾çÇé½Úµã
-	int weapon = -1;//µ±Ç°ÎäÆ÷id  Ä¬ÈÏ-1ÎªÎŞ
-	int armor = -1; //µ±Ç°»¤¼×id
-	
-				  //ÎïÆ·ÊµÀı»¯
+	int mapId;			//è®°å½•ç©å®¶å½“å‰æ‰€åœ¨åœ°
+	Skill skill;		//ä»–æ‰€æ‹¥æœ‰çš„æŠ€èƒ½
+
+	int story = 0;//å‰§æƒ…èŠ‚ç‚¹
+	int weapon = -1;//å½“å‰æ­¦å™¨id  é»˜è®¤-1ä¸ºæ— 
+	int armor = -1; //å½“å‰æŠ¤ç”²id
+
+	//ç‰©å“å®ä¾‹åŒ–
 	goods goods[21] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
 
 };
