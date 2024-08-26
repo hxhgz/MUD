@@ -6,7 +6,7 @@
 using namespace std;
 Store::Store() {
 	int i = 0;
-	while (i <= 20) {
+	while (i <= 26) {
 		stores.insert(pair<int, int>(i, 999));
 		i++;
 	}
@@ -15,16 +15,18 @@ Store::~Store() {
 
 };
 void Store::showStore() {
-	cout <<left<< "ÎïÆ·ID" << setw(20) << "ÎïÆ·ÃèÊö" << setw(70) << "¼Û¸ñ" << setw(15) << endl;
+	cout <<left<< "ç‰©å“ID" << setw(20) << "ç‰©å“æè¿°" << setw(70) << "ä»·æ ¼" << setw(15) << endl;
 	map<int, int>:: iterator iter;
 	int i = 0;
 	for (iter = stores.begin(); iter != stores.end(); iter++)
 	{
-		cout << left << setw(2) << i << setw(10) << goods[iter->first].getName() << "   "
-			<< setw(50) << goods[iter->first].getDesc() << "   "
-			<< goods[iter->first].getPriceBuy() << endl;
+		if (iter->first <= 21) {
+			cout << left << setw(2) << i << setw(10) << goods[iter->first].getName() << "   "
+				<< setw(50) << goods[iter->first].getDesc() << "   "
+				<< goods[iter->first].getPriceBuy() << endl;
 
-		i++;//ÎïÆ·ÐòºÅ
+			i++;//ç‰©å“åºå·
+		}
 	}
 
 }
@@ -32,19 +34,19 @@ Role Store:: Buywares(Role player) {
 	int goodsId, goodsNum;
 	bool ifcontinue = false;
 	while (!ifcontinue) {
-		cout << "ÇëÊäÈëÒª¹ºÂòµÄÎïÆ·IDºÅ£¨ÊäÈë21ÍË³ö£©" << endl;
+		cout << "è¯·è¾“å…¥è¦è´­ä¹°çš„ç‰©å“IDå·ï¼ˆè¾“å…¥21é€€å‡ºï¼‰" << endl;
 		cin >> goodsId;
 
 		if (goodsId == 21) {
 			return player;
 		}
 		else if (goodsId >= 0 && goodsId < 21) {
-			ifcontinue = true; // IDÓÐÐ§£¬ÍË³öÑ­»·  
+			ifcontinue = true; // IDæœ‰æ•ˆï¼Œé€€å‡ºå¾ªçŽ¯  
 		}
 		else {
-			cout << "ÎÞÐ§µÄÎïÆ·ID£¬ÇëÖØÐÂÊäÈë" <<endl;
+			cout << "æ— æ•ˆçš„ç‰©å“IDï¼Œè¯·é‡æ–°è¾“å…¥" <<endl;
 		}
-	}	cout << "ÇëÊäÈëÒª¹ºÂòµÄÊýÁ¿(ÊäÈë0ÍË³ö)" << endl;
+	}	cout << "è¯·è¾“å…¥è¦è´­ä¹°çš„æ•°é‡(è¾“å…¥0é€€å‡º)" << endl;
 	cin >> goodsNum;
 	if (goodsNum == 0) return player;
 	int Price = int( goods[goodsId].getPriceBuy()) * int(goodsNum);
@@ -52,12 +54,13 @@ Role Store:: Buywares(Role player) {
 	{
 		player.addGoodsToBag(goodsId, goodsNum);
 		player.setMoney(player.getMoney() - Price);
-		cout << "¹ºÂò³É¹¦" << endl;
-		cout << "»ñµÃ " << goods[goodsId].getName() << goodsNum<<"¼þ";
+		cout << "è´­ä¹°æˆåŠŸ" << endl;
+		cout << "èŽ·å¾— " << goods[goodsId].getName() << goodsNum<<"ä»¶";
 	}
 	else
 	{
-		cout << "ÄãÃ»ÓÐ×ã¹»µÄÇ®£¬¸Å²»ÉÞÕË" << endl;
+		cout << "ä½ æ²¡æœ‰è¶³å¤Ÿçš„é’±ï¼Œæ¦‚ä¸èµŠè´¦" << endl;
+		return player;
 	}
 	return player;
 }
@@ -66,27 +69,28 @@ Role Store::Sellwares(Role player){
 	int goodsId, goodsNum;
 	bool ifcontinue = false;
 	while(!ifcontinue){
-	cout << "ÇëÊäÈëÒªÂô³öµÄÎïÆ·ID(ÊäÈë21ÍË³ö)" << endl;
+	cout << "è¯·è¾“å…¥è¦å–å‡ºçš„ç‰©å“ID(è¾“å…¥27é€€å‡º)" << endl;
 	cin >> goodsId;
-	if (goodsId == 21) { return player; }else
-		if (goodsId >= 0 && goodsId < 21) {
-			ifcontinue = true; // IDÓÐÐ§£¬ÍË³öÑ­»·  
+	if (goodsId == 27) { return player; }else
+		if (goodsId >= 0 && goodsId < 27) {
+			ifcontinue = true; // IDæœ‰æ•ˆï¼Œé€€å‡ºå¾ªçŽ¯  
 		}
 		else {
-			cout << "ÎÞÐ§µÄÎïÆ·ID£¬ÇëÖØÐÂÊäÈë" << endl;
+			cout << "æ— æ•ˆçš„ç‰©å“IDï¼Œè¯·é‡æ–°è¾“å…¥" << endl;
 		}
-	cout << "ÇëÊäÈëÒªÂô³öµÄÊýÁ¿(ÊäÈë0ÍË³ö)" << endl;
+	cout << "è¯·è¾“å…¥è¦å–å‡ºçš„æ•°é‡(è¾“å…¥0é€€å‡º)" << endl;
 	cin >> goodsNum;
 	if (goodsNum == 0) return player;
 	if (player.subGoodsToBag(goodsId, goodsNum)) {
 		int Price = int(goods[goodsId].getPriceSell()) * int(goodsNum);
 
 		player.setMoney(player.getMoney() + Price);
-		cout << "³öÊÛ³É¹¦" << endl;
-		cout << "»ñµÃ½ðÇ®:" << Price << endl;
+		cout << "å‡ºå”®æˆåŠŸ" << endl;
+		cout << "èŽ·å¾—é‡‘é’±:" << Price << endl;
 	}
 	else {
-		cout << "³öÊÛÊ§°Ü£¡" << endl;
+		cout << "å‡ºå”®å¤±è´¥ï¼" << endl;
+		return player;
 	}
 	return player;
 }
