@@ -7,40 +7,34 @@
 
 
 class Skill {
-	public:
-		Skill();
-		~Skill();
-		//º¯Êı»ñµÃ¼¼ÄÜĞÅÏ¢
-		string getName(int Id);		//µÃµ½ÃØ¼®Ãû×Ö
-		string getDesc(int Id);		//µÃµ½ÃØ¼®ÃèÊö
-		int getType(int Id);		//µÃµ½ÃØ¼®ÀàĞÍ
-		int getNeedMp(int Id);		//µÃµ½ÃØ¼®ºÄÀ¶
-		double getAttack(int Id);	//µÃµ½ÃØ¼®µÄ¹¥»÷Á¦
+public:
+	Skill();
+	~Skill();
+	//å‡½æ•°è·å¾—æŠ€èƒ½ä¿¡æ¯
+	string getName(int Id);		//å¾—åˆ°ç§˜ç±åå­—
+	string getDesc(int Id);		//å¾—åˆ°ç§˜ç±æè¿°
+	int getSkillId(int num);		//å¾—åˆ°ç§˜ç±id
+	int getNeedMp(int Id);		//å¾—åˆ°ç§˜ç±è€—è“
+	double getAddAttack(int Id);	//å¾—åˆ°ç§˜ç±çš„æ”»å‡»åŠ›
+	bool IfHaveSkill(int Id);	//åˆ¤æ–­æ˜¯å¦æœ‰ç§˜ç±
+	int getSkillNum();
 
 
-		
+
 
 protected:
-		//Ê¹ÓÃÈİÆ÷´æ´¢¼¼ÄÜĞÅÏ¢
-		vector<string> skillName;
-		vector<string> skillDesc;
-		vector<int> skillId;
-		vector<int> skillType;
-		vector<int> skillNeedMp;
-		vector<double> skillAttack;
-
-
-		
-
-};
-//ÈËÎïÏÖÓĞ¼¼ÄÜ
-class Role_Skill :public Skill {
-public:
-	Role_Skill();
-	bool ifHaveSkill(int Id);	//ÅĞ¶ÏÊÇ·ñÓĞÃØ¼®
-private:
+	//ä½¿ç”¨å®¹å™¨å­˜å‚¨æŠ€èƒ½ä¿¡æ¯
+	vector<string> skillName;
+	vector<string> skillDesc;
+	vector<int> skillId;
+	vector<int> skillType;
+	vector<int> skillNeedMp;
+	vector<double> skillAttack;
 	vector<int> skill_Id;
 
+
+
 };
+
 
 #endif // SKILL_H
