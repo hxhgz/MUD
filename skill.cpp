@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "Skill.h"
 
@@ -5,31 +6,25 @@ using namespace std;
 
 Skill::Skill() {
 
-	//³õÊ¼»¯ËùÓĞ¼¼ÄÜÃû³Æ¡¢ÃèÊö¡¢ÀàĞÍ¡¢ĞèÒªµÄMP¡¢¹¥»÷Á¦
-	skillName.push_back("°Î½£Ê½");
-	skillName.push_back("¸ôÉ½´òÅ£");
-	skillName.push_back("¿û»¨±¦µä");
-	skillName.push_back("»¯¹ÇÃàÃàÕÆ");
-	skillName.push_back("¸òó¡Éñ¹¦");
-	skillName.push_back("¶À¹Â¾Å½£");
-	skillName.push_back("ÈçÀ´ÉñÕÆ");
+	//åˆå§‹åŒ–æ‰€æœ‰æŠ€èƒ½åç§°ã€æè¿°ã€ç±»å‹ã€éœ€è¦çš„MPã€æ”»å‡»åŠ›
+	skillName.push_back("æ‹”å‰‘å¼");
+	skillName.push_back("éš”å±±æ‰“ç‰›");
+	skillName.push_back("è‘µèŠ±å®å…¸");
+	skillName.push_back("åŒ–éª¨ç»µç»µæŒ");
+	skillName.push_back("è›¤èŸ†ç¥åŠŸ");
+	skillName.push_back("ç‹¬å­¤ä¹å‰‘");
+	skillName.push_back("å¦‚æ¥ç¥æŒ");
 
 
-	skillDesc.push_back("»ù´¡½£ÕĞ");
-	skillDesc.push_back("¿ÉÒÔÖ±½Ó¹¥»÷µĞÈËÄÚÔà");
-	skillDesc.push_back("ÓûÁ·´Ë¹¦£¬±ØÏÈ×Ô¹¬");
-	skillDesc.push_back("Á·ÖÁ´ó³É¿ÉÒÔ¶´´©µĞÈËĞÄÔà");
-	skillDesc.push_back("Ê¦³Ğ»ğÔÆĞ°Éñ£¬´ì°ÜÁËÒ»ÖÚÎäÁÖ¸ßÊÖ");
-	skillDesc.push_back("½£ÊõµÄ×îÇ¿ÕĞÊ½£¬Ïà´«¾Å½£Ò»³ö£¬±ØÓĞÒ»ËÀ");
-	skillDesc.push_back("´ÓÌìÍâÏÂÂä¶øÀ´µÄÕĞÊ½£¬ÍşÁ¦¼«´ó");
+	skillDesc.push_back("åŸºç¡€å‰‘æ‹›");
+	skillDesc.push_back("å¯ä»¥ç›´æ¥æ”»å‡»æ•Œäººå†…è„");
+	skillDesc.push_back("æ¬²ç»ƒæ­¤åŠŸï¼Œå¿…å…ˆè‡ªå®«");
+	skillDesc.push_back("ç»ƒè‡³å¤§æˆå¯ä»¥æ´ç©¿æ•Œäººå¿ƒè„");
+	skillDesc.push_back("å¸ˆæ‰¿ç«äº‘é‚ªç¥ï¼ŒæŒ«è´¥äº†ä¸€ä¼—æ­¦æ—é«˜æ‰‹");
+	skillDesc.push_back("å‰‘æœ¯çš„æœ€å¼ºæ‹›å¼ï¼Œç›¸ä¼ ä¹å‰‘ä¸€å‡ºï¼Œå¿…æœ‰ä¸€æ­»");
+	skillDesc.push_back("ä»å¤©å¤–ä¸‹è½è€Œæ¥çš„æ‹›å¼ï¼Œå¨åŠ›æå¤§");
 
-	/*skillType.push_back(2);
-	skillType.push_back(2);
-	skillType.push_back(2);
-	skillType.push_back(2);
-	skillType.push_back(2);
-	skillType.push_back(2);
-	skillType.push_back(2);*/
+
 
 	skillId.push_back(9);
 	skillId.push_back(10);
@@ -56,26 +51,31 @@ Skill::Skill() {
 	skillAttack.push_back(70);
 	skillAttack.push_back(100);
 	skillAttack.push_back(300);
-};
-//Íê³Éº¯Êı»ñµÃ¼¼ÄÜĞÅÏ¢¹¦ÄÜ
 
+};
+//å®Œæˆå‡½æ•°è·å¾—æŠ€èƒ½ä¿¡æ¯åŠŸèƒ½
+
+int Skill::getSkillNum() {
+	return skill_Id.size();
+}
+int Skill::getSkillId(int num) {
+	return skill_Id[num];
+}
 string Skill::getName(int Id) {
 	return skillName[Id];
 }
 string Skill::getDesc(int Id) {
 	return skillDesc[Id];
 }
-int Skill::getType(int Id) {
-	return skillType[Id];
-}
+
 int Skill::getNeedMp(int Id)
 {
 	return skillNeedMp[Id];
 }
-double Skill::getAttack(int Id) {
+double Skill::getAddAttack(int Id) {
 	return skillAttack[Id];
 }
-bool Role_Skill::ifHaveSkill(int Id) {
+bool Skill::IfHaveSkill(int Id) {
 	bool flag = false;
 	for (int i = 0; i < skill_Id.size(); i++) {
 		if (skillId[i] == Id) {
@@ -86,18 +86,5 @@ bool Role_Skill::ifHaveSkill(int Id) {
 	return flag;
 }
 
-	
-//ÈİÆ÷´æ´¢ÏÖÓĞµÄ¼¼ÄÜ
-Role_Skill::Role_Skill() {
 
-	/*vector<string> skill_Name;
 
-	vector<string> skill_Desc;
-
-	vector<int> skill_Type;
-
-	vector<int> skill_NeedMp;
-
-	vector<double> skill_Attack;*/
-
-}
