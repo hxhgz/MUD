@@ -9,24 +9,25 @@ class Bag {
 public:
 	Bag();
 	~Bag();
-	void showbags();//±³°ü³õÊ¼»¯µÄÕ¹Ê¾
+	void showbags();//èƒŒåŒ…åˆå§‹åŒ–çš„å±•ç¤º
+	void showdrugs();
 	void showgoods(int* goodsId, int* num);
-	void showgoods(int goodsId, int num);//ÖØÔØÓ¦¶Ô²»Í¬Çé¿ö£¬Õ¹Ê¾ÎïÆ·ID£¬Ãû³Æ£¬ÊıÁ¿
-	int getgoodnumber();//µÃµ½ÎïÆ·ÊıÁ¿
-	int getWhichGoodsId(int whichGoods);			//µÃµ½±³°üÀïµÚwhichGoods¼şÎïÆ·µÄId
-	int getWhichGoodsNum(int whichGoods);	//µÃµ½±³°üÀïµÚwhichGoods¼şÎïÆ·µÄÊıÁ¿
+	void showgoods(int goodsId, int num);//é‡è½½åº”å¯¹ä¸åŒæƒ…å†µï¼Œå±•ç¤ºç‰©å“IDï¼Œåç§°ï¼Œæ•°é‡
+	int getgoodnumber();//å¾—åˆ°ç‰©å“æ•°é‡
+	int getWhichGoodsId(int whichGoods);			//å¾—åˆ°èƒŒåŒ…é‡Œç¬¬whichGoodsä»¶ç‰©å“çš„Id
+	int getWhichGoodsNum(int whichGoods);	//å¾—åˆ°èƒŒåŒ…é‡Œç¬¬whichGoodsä»¶ç‰©å“çš„æ•°é‡
 	void addgoods(int id, int num);
 	bool reducegoods(int id, int num);
 	bool isUseDrug();
 	bool ischangeArmor();
-	void savebag();			//×îºó±£´æÓÎÏ·Ê±µ¥¶À½«ÎïÆ·´æÈëÒ»¸öÊı×é
-	//int** getSaveBag();		//µÃµ½±£´æÎïÆ·µÄÊı×é
+	void savebag();			//æœ€åä¿å­˜æ¸¸æˆæ—¶å•ç‹¬å°†ç‰©å“å­˜å…¥ä¸€ä¸ªæ•°ç»„
+	//int** getSaveBag();		//å¾—åˆ°ä¿å­˜ç‰©å“çš„æ•°ç»„
 	map<int, int> getMapBags();
 
 private:
 	map<int, int> bags;
-	int savegoods[21][2];		//ÓÃÀ´SaveÎïÆ·µÄÊı×é
-	//ÎïÆ·ÊµÀı»¯
+	int savegoods[21][2];		//ç”¨æ¥Saveç‰©å“çš„æ•°ç»„
+	//ç‰©å“å®ä¾‹åŒ–
 	Goods goods[21] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 };
 #endif 
