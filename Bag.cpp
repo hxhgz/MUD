@@ -3,33 +3,49 @@
 #include<iomanip>
 using namespace std;
 Bag::Bag() {
-	savegoods[21][2] = 0;
+	savegoods[27][2] = 0;
 }
 Bag::~Bag() {}
 void Bag::showbags() {
 	if (bags.begin() == bags.end())
-		cout << "µ±Ç°±³°üÎŞÎïÆ·£¡" << endl;
+		cout << "å½“å‰èƒŒåŒ…æ— ç‰©å“ï¼" << endl;
 	else {
-		cout << "±³°ü:" << endl;
-		cout << "ID     ÎïÆ·Ãû³Æ     ÊıÁ¿" << endl;
-		map<int, int>::iterator iter;//´´½¨ÈİÆ÷ºÍµü´úÆ÷£¬iterµÄ×÷ÓÃÊÇÓÃÀ´±éÀú±³°üÀïµÄÎïÆ·£¬map´¢´æµÄÊÇidºÍÊıÁ¿
+		cout << "èƒŒåŒ…:" << endl;
+		cout << "ID     ç‰©å“åç§°     æ•°é‡" << endl;
+		map<int, int>::iterator iter;//åˆ›å»ºå®¹å™¨å’Œè¿­ä»£å™¨ï¼Œiterçš„ä½œç”¨æ˜¯ç”¨æ¥éå†èƒŒåŒ…é‡Œçš„ç‰©å“ï¼Œmapå‚¨å­˜çš„æ˜¯idå’Œæ•°é‡
 		for (iter = bags.begin(); iter != bags.end(); ++iter) {
 			cout << left << setw(9) << goods[iter->first].getGoodsId() << setw(9) << goods[iter->first].getName() << setw(2) << "/t" << iter->second << endl;
 		}
 	}
 }
+void Bag::showdrugs() {
+	if (bags.begin() == bags.end())
+		cout << "å½“å‰èƒŒåŒ…æ— è¯ç‰©ï¼" << endl;
+	else {
+		cout << "èƒŒåŒ…:" << endl;
+		cout << "ID     ç‰©å“åç§°     æ•°é‡" << endl;
+		map<int, int>::iterator iter;//åˆ›å»ºå®¹å™¨å’Œè¿­ä»£å™¨ï¼Œiterçš„ä½œç”¨æ˜¯ç”¨æ¥éå†èƒŒåŒ…é‡Œçš„ç‰©å“ï¼Œmapå‚¨å­˜çš„æ˜¯idå’Œæ•°é‡
+		for (iter = bags.begin(); iter != bags.end(); ++iter) {
+			if (iter->first >= 16 && iter->first <= 20) {
+				cout << left << setw(9) << goods[iter->first].getGoodsId() << setw(9) << goods[iter->first].getName() << setw(2) << "/t" << iter->second << endl;
+			}
+		}
+	}
+}
+
 void Bag::showgoods(int* goodsId, int* num) {
 
 			for (int i = 0; goodsId[i] >= 0; i++)
-				cout << i + 1 << "." << setw(10) << left << goods[goodsId[i]].getName() << num[i] << "¼ş" << endl;
+				cout << i + 1 << "." << setw(10) << left << goods[goodsId[i]].getName() << num[i] << "ä»¶" << endl;
 			cout << endl;
 	}
 void Bag::showgoods(int goodsId, int num) {
-	cout << 1 << "." << setw(10) << left << goods[goodsId].getName() << num << "¼ş" << endl;
+	cout << 1 << "." << setw(10) << left << goods[goodsId].getName() << num << "ä»¶" << endl;
 	cout << endl;
 }
 
 void Bag::addgoods(int id, int num) {
+
 	if (bags.count(id))
 	{
 		bags[id] += num;
@@ -37,9 +53,14 @@ void Bag::addgoods(int id, int num) {
 	else
 	{
 		bags.insert(pair<int, int>(id, num));
-	}
+	};
+	if (id >= 9 && id <= 15) {
+			bags[id] <= 1;
+		}
 	
-}//id´æÔÚ£¬¼´Ìí¼Ó¶ÔÓ¦ÊıÁ¿£¬²»´æÔÚ¾Í´´½¨ĞÂµÄ¼üÖµ¶Ô
+	
+	
+}//idå­˜åœ¨ï¼Œå³æ·»åŠ å¯¹åº”æ•°é‡ï¼Œä¸å­˜åœ¨å°±åˆ›å»ºæ–°çš„é”®å€¼å¯¹
 void Bag::savebag() {
 	map<int, int>::iterator iter;
 	for (iter = bags.begin(); iter != bags.end(); ++iter) {
@@ -55,7 +76,7 @@ bool Bag::reducegoods(int id, int num) {
 		return false;
 	else {
 		if (num > iter->second)
-		num = iter->second; // Èç¹û³¢ÊÔ¼õÉÙµÄÊıÁ¿³¬¹ıµ±Ç°ÊıÁ¿£¬ÔòÖ»¼õÉÙµ±Ç°ÊıÁ¿µÄÈ«²¿  
+			num = iter->second; // å¦‚æœå°è¯•å‡å°‘çš„æ•°é‡è¶…è¿‡å½“å‰æ•°é‡ï¼Œåˆ™åªå‡å°‘å½“å‰æ•°é‡çš„å…¨éƒ¨  
 
 		bags[id] -= num;
 		if (bags[id] <= 0)
@@ -71,7 +92,7 @@ map<int, int> Bag::getMapBags()
 	return bags;
 }
 
-int Bag::getgoodnumber() {  //·µ»Ø±³°üÀïÎïÆ·µÄÊıÁ¿
+int Bag::getgoodnumber() {  //è¿”å›èƒŒåŒ…é‡Œç‰©å“çš„æ•°é‡
 	return bags.size();
 }
 
@@ -97,7 +118,7 @@ bool Bag::isUseDrug() {
 	return true;
 	}
 	return false;
-}//¼ì²âÊÇ·ñ³ÔÒ©
+}//æ£€æµ‹æ˜¯å¦åƒè¯
 bool Bag::ischangeArmor() {
 	map<int, int>::iterator iter;
 	for (iter = bags.begin(); iter != bags.end(); ++iter) {
@@ -106,4 +127,4 @@ bool Bag::ischangeArmor() {
 		
 	}return false;
 
-}//¼ì²âÊÇ·ñ»»¼×
+}//æ£€æµ‹æ˜¯å¦æ¢ç”²
