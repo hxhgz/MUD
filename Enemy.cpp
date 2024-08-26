@@ -10,10 +10,10 @@ Enemy::Enemy(/*int enemyId,*/string name, int health, int armor, int attackPower
 	:/*enemyId(enemyId),*/ name(name), health(health), armor(armor), attackPower(attackPower),money(money) {};
 
 void Enemy::displayInfo() const {
-	cout << endl << "µ±Ç°¹ÖÎï:" << name << endl;
-	cout << "ÉúÃüÖµ:" << health << '\t';
-	cout << "»¤¼×Öµ:" << armor << endl;
-	cout << "¹¥»÷Öµ:" << attackPower << endl;
+	cout << endl << "å½“å‰æ€ªç‰©:" << name << endl;
+	cout << "ç”Ÿå‘½å€¼:" << health << '\t';
+	cout << "æŠ¤ç”²å€¼:" << armor << endl;
+	cout << "æ”»å‡»å€¼:" << attackPower << endl;
 };
 
 int Enemy::getMoney() const {
@@ -24,11 +24,11 @@ Enemy_npc::Enemy_npc(/*int enemyId,*/ string name, int health, int internalEnerg
 	:Enemy(/*enemyId,*/ name, health, armor, attackPower, money), internalEnergy(internalEnergy),skill(skill){};
 
 void Enemy_npc::displayInfo() const {
-	cout << endl << "µ±Ç°µĞÈË:" << name << endl;
-	cout << "ÉúÃüÖµ:" << health << '\t';
-	cout << "»¤¼×Öµ:" << armor << endl;
-	cout << "¹¥»÷Öµ:" << attackPower << '\t';
-	cout << "ÄÚÁ¦Öµ:" << internalEnergy << endl;
+	cout << endl << "å½“å‰æ•Œäºº:" << name << endl;
+	cout << "ç”Ÿå‘½å€¼:" << health << '\t';
+	cout << "æŠ¤ç”²å€¼:" << armor << endl;
+	cout << "æ”»å‡»å€¼:" << attackPower << '\t';
+	cout << "å†…åŠ›å€¼:" << internalEnergy << endl;
 };
 
 Enemy_Boss::Enemy_Boss(/*int enemyId,*/ string name, int health, int armor, int attackPower, int money, const vector<Skill>& skills)
@@ -37,27 +37,27 @@ Enemy_Boss::Enemy_Boss(/*int enemyId,*/ string name, int health, int armor, int 
 
 /*
 
-´´½¨µĞÈË(ÔÚmainº¯ÊıÖĞ):
-
-Skill npcSkill1 = {"¿ÕÃ÷È­", 10};
-Skill npcSkill2 = {"Åü¿ÕÕÆ", 17};
-Skill npcSkill3 = {"µ¯Ö¸ÉñÍ¨", 28};
+åˆ›å»ºæ•Œäºº(åœ¨mainå‡½æ•°ä¸­):
+hello world;
+Skill npcSkill1 = {"ç©ºæ˜æ‹³", 10};
+Skill npcSkill2 = {"åŠˆç©ºæŒ", 17};
+Skill npcSkill3 = {"å¼¹æŒ‡ç¥é€š", 28};
 vector<Skill> bossSkills = {
-	{"ÁÒÑæÍÂÏ¢", 33},{"ÁúÒ§", 23}
+	{"çƒˆç„°åæ¯", 33},{"é¾™å’¬", 23}
 };
 
-//ÊôĞÔÒÀ´ÎÎª	Ãû×Ö£¬ÑªÁ¿£¬»¤¼×£¬¹¥»÷ÉËº¦£¬µôÂä½ğ±Ò
-	Enemy enemy1("À×öª¾Şòá",100, 50£¬5£¬50);
-	Enemy enemy2("Ğş±ù÷è÷ë",150, 15£¬15£¬125);
-	Enemy enemy3("³ãÑæ·ï»Ë",225, 25£¬20£¬275);
-	Enemy enemy4("ĞŞ¸ñË¹",300, 30£¬25£¬500);
+//å±æ€§ä¾æ¬¡ä¸º	åå­—ï¼Œè¡€é‡ï¼ŒæŠ¤ç”²ï¼Œæ”»å‡»ä¼¤å®³ï¼Œæ‰è½é‡‘å¸
+	Enemy enemy1("é›·éœ†å·¨èœ¥",100, 50ï¼Œ5ï¼Œ50);
+	Enemy enemy2("ç„å†°éº’éºŸ",150, 15ï¼Œ15ï¼Œ125);
+	Enemy enemy3("ç‚½ç„°å‡¤å‡°",225, 25ï¼Œ20ï¼Œ275);
+	Enemy enemy4("ä¿®æ ¼æ–¯",300, 30ï¼Œ25ï¼Œ500);
 
-//ÊôĞÔÒÀ´ÎÎª	Ãû×Ö£¬ÑªÁ¿£¬ÄÚÁ¦£¬»¤¼×£¬¹¥»÷ÉËº¦£¬µôÂä½ğ±Ò,ÃØ¼®
-	Enemy_npc npc1("¸ßÁ¢", 100, 50, 10, 5, 100, npcSkill);
-	Enemy_npc npc2("Âé·æ", 100, 50, 30, 20, 175, npcSkill);
-	Enemy_npc npc3("Î÷ÃÅÓñ", 100, 50, 50, 35, 325, npcSkill);
+//å±æ€§ä¾æ¬¡ä¸º	åå­—ï¼Œè¡€é‡ï¼Œå†…åŠ›ï¼ŒæŠ¤ç”²ï¼Œæ”»å‡»ä¼¤å®³ï¼Œæ‰è½é‡‘å¸,ç§˜ç±
+	Enemy_npc npc1("é«˜ç«‹", 100, 50, 10, 5, 100, npcSkill);
+	Enemy_npc npc2("éº»é”‹", 100, 50, 30, 20, 175, npcSkill);
+	Enemy_npc npc3("è¥¿é—¨ç‰", 100, 50, 50, 35, 325, npcSkill);
 
-//ÊôĞÔÒÀ´ÎÎª	Ãû×Ö£¬ÑªÁ¿£¬»¤¼×£¬¹¥»÷ÉËº¦£¬µôÂä½ğ±Ò,ÃØ¼®
-	Enemy_Boss boss("ÇàÁú", 500, 100, 50, 1000, bossSkills);
+//å±æ€§ä¾æ¬¡ä¸º	åå­—ï¼Œè¡€é‡ï¼ŒæŠ¤ç”²ï¼Œæ”»å‡»ä¼¤å®³ï¼Œæ‰è½é‡‘å¸,ç§˜ç±
+	Enemy_Boss boss("é’é¾™", 500, 100, 50, 1000, bossSkills);
 
 */
