@@ -22,20 +22,20 @@ public:
 	void showGoods();
 	int getAddArmor();
 private:
-	string name;	//ÎïÆ·Ãû³Æ
+	string name;	//ç‰©å“åç§°
 	int goodsId;
-	string desc;	//ÎïÆ·ÃèÊö
-	int type;//ÎïÆ·ÊôĞÔ£ºÎäÆ÷-0£¬·À¾ß-1£¬Ò©Æ·-2
-	int addAttack = 0;	//Ôö¼Ó¹¥»÷
-	int addArmor = 0;	//Ôö¼Ó·ÀÓù
-	int addMP = 0; //Ôö¼ÓÄÚÁ¦
-	int addHP = 0;//Ôö¼ÓÑªÁ¿
+	string desc;	//ç‰©å“æè¿°
+	int type;//ç‰©å“å±æ€§ï¼šæ­¦å™¨-0ï¼Œé˜²å…·-1ï¼Œè¯å“-2
+	int addAttack = 0;	//å¢åŠ æ”»å‡»
+	int addArmor = 0;	//å¢åŠ é˜²å¾¡
+	int addMP = 0; //å¢åŠ å†…åŠ›
+	int addHP = 0;//å¢åŠ è¡€é‡
 	int priceSell;
 	int priceBuy;
 };
 
 //
-//Goods goods[26] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 };
+//Goods goods[27] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 };
 #endif
 
 
