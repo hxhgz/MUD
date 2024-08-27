@@ -224,14 +224,16 @@ Bag Role::getBag() {
 Skill Role::getRole_Skill() {
 	return skill;
 }
-
+void Role::setRole_Skill(Skill newSkill) {
+	skill = newSkill;
+}
 void Role::showBag() {
 	bagbag.showbags();
 }
 
-void Role::showDrug() {
-	bagbag.showdrugs();
-}
+//void Role::showDrug() {
+//	bagbag.showdrugs();
+//}
 int Role::getBagWhichGoodsId(int whichGoods) {
 	return bagbag.getWhichGoodsId(whichGoods);
 
@@ -331,12 +333,12 @@ void Role::addSaveGoodsToBag(int Id, int num) {
 
 void Role::useDrug() {
 	if (bagbag.isUseDrug()) {
-		cout << "是否使用补品：	1.是	2.否" << endl;
+		/*cout << "是否使用补品：	1.是	2.否" << endl;
 		int choice;
 		cin >> choice;
-		if (choice == 2)
-			return;
-		if (choice == 1) {
+		if (choice == 2)*/
+			/*return;*/
+		//if (choice == 1) {
 			cout << "请选择要使用的补品：" << endl;
 			for (int i = bagbag.getgoodnumber(); i > 0; i--) {
 				for (int j = 16; j < 20; j++)
@@ -373,7 +375,7 @@ void Role::useDrug() {
 				cout << "共恢复" << goods[choiceGoodsId].getAddMP() * choiceGoodsNum << "点内力。" << endl << endl;
 			}
 			if (choiceGoodsId == 0) return;
-		}
+		//}
 	}
 }
 
