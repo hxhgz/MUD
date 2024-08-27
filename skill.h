@@ -20,7 +20,7 @@ public:
 	double getAddAttack(int Id);	//得到秘籍的攻击力
 	bool IfHaveSkill(int Id);	//判断是否有秘籍
 	int getSkillNum();
-
+	
 
 
 
@@ -28,7 +28,7 @@ protected:
 	//使用容器存储技能信息
 	vector<string> skillName;
 	vector<string> skillDesc;
-	vector<int> skillId;
+	//vector<int> skillId;
 	vector<int> skillType;
 	vector<int> skillNeedMp;
 	vector<double> skillAttack;
