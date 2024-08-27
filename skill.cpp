@@ -42,20 +42,20 @@ Skill::Skill() {
 
 
 	//主角能买的秘籍
-	skillId.push_back(9);
-	skillId.push_back(10);
-	skillId.push_back(11);
-	skillId.push_back(12);
-	skillId.push_back(13);
-	skillId.push_back(14);
-	skillId.push_back(15);
+	skill_Id.push_back(9);
+	skill_Id.push_back(10);
+	skill_Id.push_back(11);
+	skill_Id.push_back(12);
+	skill_Id.push_back(13);
+	skill_Id.push_back(14);
+	skill_Id.push_back(15);
 	//由敌人掉的秘籍
-	skillId.push_back(21);
-	skillId.push_back(22);
-	skillId.push_back(23);
-	skillId.push_back(24);
-	skillId.push_back(25);
-	skillId.push_back(26);
+	skill_Id.push_back(21);
+	skill_Id.push_back(22);
+	skill_Id.push_back(23);
+	skill_Id.push_back(24);
+	skill_Id.push_back(25);
+	skill_Id.push_back(26);
 
 
 	//主角能买的秘籍
@@ -98,13 +98,17 @@ Skill::Skill() {
 void Skill::SortSkillId() {
 	sort(skill_Id.begin(), skill_Id.end());
 }
+
 int Skill::getSkillNum(){
 	
 	return skill_Id.size();
 }
+
 int Skill::getSkillId(int num) {
 	return skill_Id[num];
 }
+
+
 string Skill::getName(int Id) {
 	 if (Id < 16) {
 		 return skillName[Id-9];//Id代表秘籍的标号，对应goods里面的9-15和21-26，但是访问其他数组时的索引值应该是从0开始，所以要这样处理
@@ -153,7 +157,7 @@ bool Skill::IfHaveSkill(int Id) {
 	}
 	bool flag = false;
 	for (int i = 0; i < skill_Id.size(); i++) {
-		if (skillId[i] == Id) {
+		if (skill_Id[i] == Id) {
 			flag = true;
 			break;
 		}
