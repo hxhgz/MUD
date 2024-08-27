@@ -46,13 +46,13 @@ public:
 	void setStory(int s);//保存用
 
 	Skill getRole_Skill();
-	void setRole_Skill(Skill& newSkill);//保存用
+	void setRole_Skill(Skill newSkill);//保存用
 
 	void addSaveGoodsToBag(int Id, int num);//保存用
 
 	Bag getBag();
 	void showBag();
-	void showDrug();
+	//void showDrug();
 	int getBagWhichGoodsId(int whichGoods);			//得到背包里第whichGoods件物品
 	int getBagWhichGoodsNum(int whichGoods);
 	//显示背包
@@ -108,7 +108,7 @@ private:
 	int armor = -1; //当前护甲id
 
 	//物品实例化
-	Goods goods[27] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20，21,22,23,24,25,26 };
+	Goods goods[27] = { 0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 };
 
 };
 #endif
